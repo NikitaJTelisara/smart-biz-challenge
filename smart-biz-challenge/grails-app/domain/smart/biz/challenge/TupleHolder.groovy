@@ -17,6 +17,7 @@ class TupleHolder {
      *
      * @param tupleItem , object of TupleItem class
      */
+
     TupleHolder(TupleItem tupleItem) {
         weightInKg = tupleItem.getWeightInKilograms()
         tuples = new ArrayList<TupleItem>()
@@ -32,22 +33,22 @@ class TupleHolder {
      */
     boolean insertTuple(TupleItem tuple) {
         float tupleWeightInKg = tuple.getWeightInKilograms()
-
         if (weightInKg == tupleWeightInKg) {
             return (addTupleToList(tuple));
         } else if (tupleWeightInKg < weightInKg) {
-            if (left == null) {
+            if (left) {
+                left.insertTuple(tuple)
+            } else {
                 left = new TupleHolder(tuple)
                 return (left != null)
-            } else {
-                left.insertTuple(tuple)
             }
         } else if (tupleWeightInKg > weightInKg) {
-            if (right == null) {
+            if (right) {
+                right.insertTuple(tuple)
+
+            } else {
                 right = new TupleHolder(tuple)
                 return (right != null)
-            } else {
-                right.insertTuple(tuple)
             }
         }
         return false
@@ -79,13 +80,13 @@ class TupleHolder {
      * @return tupleList , list of all TupleItems
      */
     ArrayList<TupleItem> getAllTuplesInOrder(ArrayList<TupleItem> tupleList) {
-        if (left != null) {
+        if (left) {
             left.getAllTuplesInOrder(tupleList);
         }
-        for (TupleItem tuple : tuples) {
-            tupleList.add(tuple)
+        if (tuples.size() > 0) {
+            tupleList.addAll(tuples)
         }
-        if (right!= null) {
+        if (right) {
             right.getAllTuplesInOrder(tupleList);
         }
         return tupleList
