@@ -31,7 +31,7 @@ class TupleHolderSpec extends Specification {
         assert tupleHolder.tuples.size().equals(1)
     }
 
-    void 'test insertTuple()'() {
+    void "test insertTuple()"() {
         given:
         TupleItem tupleItem = Mock(TupleItem)
         tupleItem.getWeightInKilograms(* _) >> { 1.2f }
