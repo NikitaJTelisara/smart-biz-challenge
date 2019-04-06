@@ -51,7 +51,7 @@ class TupleItemSpec extends Specification {
         then:
         assert weight.equals(weightInLb)
 
-        when: "Unit is Pounds"
+        when: "Unit is Kilograms"
         tuple = new TupleItem(item_description, weight, Unit_Of_Measurement.kg)
         float expectedWeightInLb = weight / weight_conversionRate
         weightInLb = tuple.getWeightInPounds()
